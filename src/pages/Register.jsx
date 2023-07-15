@@ -10,8 +10,8 @@ const Register = () => {
   const [isEmptyError, setEmptyError] = useState(false);
   const [isError, setError] = useState(false);
 
-  const handleNavigateToMyAccount = () => {
-    navigate("/myaccount");
+  const handleNavigateToMyHome = () => {
+    navigate("/");
   };
 
   const handleSubmit = async (event) => {
@@ -48,8 +48,8 @@ const Register = () => {
 
         setTimeout(() => {
           setRegistered(false);
-          handleNavigateToMyAccount();
-        }, 1000);
+          handleNavigateToMyHome();
+        }, 2000);
       }
     } catch (error) {
       if (error && error.response && error.response.data) {
