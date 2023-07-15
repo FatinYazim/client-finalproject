@@ -1,0 +1,133 @@
+import React from "react";
+import  { useState } from 'react';
+
+
+const Request  = () => {
+
+    const [showList, setShowList] = useState(false);
+    const [selectedLeave, setSelectedLeave] = useState('');
+
+    const toggleList = () => {
+        setShowList(!showList);
+      };
+
+      const handleLeaveSelection = (leaveType) => {
+        setSelectedLeave(leaveType);
+        setShowList(false);
+      };
+
+      
+
+return(
+  
+        <div
+        style={{ height: "100vh", width: "100vw" }}
+        >
+        <div
+         style={{
+            width: "100%",
+            height: "100px",
+            backgroundColor: "#5F264A",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            padding: "3rem",
+            fontWeight: "bold",
+            fontSize: 15,
+            color: "whitesmoke",
+    
+          }}>
+            <h1  style={{ marginLeft:100}} >HTAR</h1>
+            <h1 style={{ marginRight:100, fontsize: 10}}>LEAVE REQUEST</h1>
+            </div>
+{/* leave form  */}
+<div 
+ style={{
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+ }}
+>
+<div
+        style={{
+            marginTop:100,
+            border: "10px solid #5F264A",
+            width: "50%",
+            // height: 50,
+          display: "flex",
+          flexDirection: "column",
+          gap:"30px",
+        //   justifyContent: "center",
+          height: "600px",
+        //   alignItems: "center",
+          padding: "3rem",
+          backgroundColor: "whitesmoke",
+          borderRadius: "0.5rem"}}>
+          
+
+{/* leave type */}
+<div>
+      <button onClick={toggleList}>
+        {selectedLeave ? selectedLeave : 'Leave Type'}
+      </button>
+      {showList && (
+        <ul>
+          <li onClick={() => handleLeaveSelection('Annual Leave')}>
+            Annual Leave
+          </li>
+          <li onClick={() => handleLeaveSelection('Emergency Leave')}>
+            Emergency Leave
+          </li>
+        </ul>
+      )}
+    </div>
+{/* component */}
+<form
+          style={{ 
+            width: "100%", 
+            maxWidth: "400px", 
+        
+        }}
+          
+        >
+         
+            {/* <label htmlFor="email"  style={{fontWeight:"bold", fontSize:20}} > </label> */}
+            <input  placeholder="Date start" id="dateStart" type="date"  />
+       
+          
+           
+        
+            <input placeholder="Date End" id="dateEnd" type="date" />
+         
+              
+        </form>
+         {/* Reason */}
+      
+         <input  placeholder="Reason...." id="reason" type="text"  />
+
+
+{/* submit button  */}
+<div  style={{display:"flex", justifyContent:"center", alignItems:"center"}} >
+<button
+type="submit"
+style={{
+  display: "flex",
+  width:"50%",
+  borderRadius: "10px",
+  backgroundColor: "#171A21",
+  textAlign: "center",
+  color: "white",}}
+
+
+> Submit </button></div>
+         
+
+          {/* big boss */}
+          </div>
+          </div>
+</div>
+
+);
+};
+
+export default Request;

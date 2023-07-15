@@ -1,0 +1,88 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: monospace;
+  /* background-image: url(/src/assets/background.jpg) */
+  
+}
+
+
+.background {
+  background-image: url(/src/assets/kl.webp);
+  height: 1000px;
+
+}
+
+.profilepicture{
+  background-image: url(/src/assets/profile.png);
+  background-size: cover;
+  background-position: center;
+  height: 200px;
+  width: 200px;
+  border-radius: 100px;
+  margin-bottom: 2rem;
+}
+
+input {
+  all: unset;
+  min-height: 40px;
+  border-style: solid;
+  border-color: gray;
+  border-radius: 15px;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+button {
+  all: unset;
+  background-color: white;
+  border-style: solid;
+ 
+  border-radius: 4px;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 35px;
+  font-weight: medium;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+/* leave button */
+.leave-button-container {
+  position: relative;
+  display: inline-block;
+}
+
+.leave-button {
+  padding: 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.leave-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 200px;
+  background-color: #f9f9f9;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+}
+
+.leave-list li {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.leave-list li:hover {
+  background-color: #f1f1f1;
+}

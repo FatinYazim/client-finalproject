@@ -1,0 +1,167 @@
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import Cookies from "js-cookie";
+import useCookie from "../hook/useCookie";
+
+import { useNavigate } from "react-router-dom";
+
+
+
+const View = () => {
+  const [jwt, setJwt] = useCookie("token", "");
+  const [user, setUser] = useState(null);
+  const navigate = useNavigate();
+  // const handleNavigateToMyRequest = () => {
+  //   navigate("/my-request");
+  // };
+  const fetchUserAccount = () => {
+    axios
+      .get("http://localhost:8080/private", {
+        headers: { Authorization: `Bearer ${jwt}` },
+      })
+      .then(function (response) {
+        console.info(response);
+        setUser(response.data.user);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  };
+
+  useEffect(() => {
+    if (!jwt) {
+      // handleLogOut();
+    } else {
+      fetchUserAccount();
+    }
+  }, []);
+
+  
+  
+
+  return (
+    <div style={{ height: "100vh", width: "100vw" }}>
+      <div
+        style={{
+          width: "100%",
+          height: "100px",
+          backgroundColor: "#5F264A",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          padding: "3rem",
+          fontWeight: "bold",
+          color: "whitesmoke",
+        }}
+      >
+        <h1 style={{ marginLeft: 100 }}>HTAR</h1>
+        <div style={{ display: "flex", gap: "2px", alignItems: "center" }}>
+          <h1 style={{ marginRight: 100, fontSize: 7 }}>VIEW REQUEST</h1>
+          <button
+            style={{ color: "black" }}
+            // onClick={handleLogOut}
+          >
+            Logout
+          </button>
+        </div>
+      </div>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <div
+          style={{
+            position: "relative",
+            borderStyle: "solid",
+            borderColor: "gray",
+            borderRadius: "0.5rem",
+            padding: "1rem",
+            marginTop: "5rem",
+            width: "700px",
+          }}
+        >
+          <button
+            style={{
+              unset: "all",
+              position: "absolute",
+              right: "6rem",
+              top: "1rem",
+              borderStyle: "solid",
+              borderColor: "gray",
+              borderRadius: "0.3rem",
+              padding: "0.3rem",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              cursor: "pointer",
+            }}
+          >
+            In Progress
+          </button>
+          <button
+      // onClick={handleNavigateToMyRequest}
+      style={{
+        unset: "all",
+        position: "absolute",
+        right: "5rem",
+        top: "5rem",
+        borderStyle: "solid",
+        borderColor: "gray",
+        borderRadius: "0.3rem",
+        padding: "0.3rem",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        cursor: "pointer",
+      }}
+     
+    >
+      Edit
+    </button>
+
+          <button
+            style={{
+              unset: "all",
+              position: "absolute",
+              right: "10rem",
+              top: "5rem",
+              borderStyle: "solid",
+              borderColor: "gray",
+              borderRadius: "0.3rem",
+              padding: "0.3rem",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              cursor: "pointer",
+            }}
+          >
+            Delete
+          </button>
+          <div>
+            <p>Date Start</p>
+            <p style={{ display: "inline", fontWeight: "bold" }}>
+              {user?.datestart}
+            </p>
+          </div>
+          <div style={{ marginTop: "1rem" }}>
+            <p>Date End</p>
+            <p style={{ display: "inline", fontWeight: "bold" }}>
+              {user?.dateend}
+            </p>
+          </div>
+          <div style={{ marginTop: "1rem" }}>
+            <p>Reason</p>
+            <p style={{ display: "inline", fontWeight: "bold" }}>
+              {user?.reason}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default View;
